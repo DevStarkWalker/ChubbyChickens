@@ -124,20 +124,22 @@ public class Controller : MonoBehaviour
         if (other.gameObject.tag == "Finish")
         {
             isMoving = false;
+            animator.Play("Idle_A");
             GameManager.Instance.FinishedLevel();
             other.enabled = false;
+        }
+        if (other.gameObject.tag == "Floor")
+        {
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            GameManager.Instance.GameOver();
+
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
-        {
-            Debug.Log("You Suck");
-            animator.Play("Death");
-            GameManager.Instance.GameOver();
-
-        }
+      
     }
 }
 

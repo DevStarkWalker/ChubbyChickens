@@ -127,6 +127,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         timingGame = false;
+        player.enabled = false;
+        player.animator.Play("Death");
         Debug.Log("You Suck");
     }
 
