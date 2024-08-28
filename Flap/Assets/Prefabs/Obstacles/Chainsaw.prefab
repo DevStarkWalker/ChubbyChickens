@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4362886468781441541}
   - component: {fileID: 5709345344647468028}
   m_Layer: 0
-  m_Name: Drone
+  m_Name: Chainsaw
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

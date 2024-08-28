@@ -35,12 +35,18 @@ public class HillSpawn : MonoBehaviour
     {
         ClearCachedPieces();
         CreateFirstPiece();
-        
-        for (int i = 0; i < levelLength - 1; i++)
+        GameManager.Instance.spawns.Clear();
+        for (int i = 1; i < levelLength + 1 ; i++)
         {
+            Debug.Log(i);
             LevelCreation();
-            if (i == levelLength - 2)
-            {   
+            if (i % 5 == 0)
+            {
+                SpawnSpawner();
+                Debug.Log(i + "is divisble by 5");
+            }
+            if (i == levelLength - 1)
+            {
                 CreateLastPiece();
             }
         }
@@ -165,9 +171,14 @@ public class HillSpawn : MonoBehaviour
                 collider.enabled = true;
             }
         }
+    }
+
+    private void SpawnSpawner()
+    {
         GameObject nextSpawner = Instantiate(objectSpawner);
-        nextSpawner.transform.position = this.transform.position + new Vector3 (0 , 10, 22.5f);
+        nextSpawner.transform.position = this.transform.position + new Vector3(0, 10, 22.5f);
         GameManager.Instance.spawns.Add(nextSpawner.GetComponent<ObjectSpawner>());
+
     }
 
     #endregion

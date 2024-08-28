@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         countDownTimer = true;
         gameTime = 0;
         timingGame = true;

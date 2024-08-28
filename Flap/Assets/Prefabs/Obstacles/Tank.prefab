@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -1303704858133354693}
   - component: {fileID: 2052880239565737632}
   m_Layer: 0
-  m_Name: Tumbleweed
+  m_Name: Tank
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
