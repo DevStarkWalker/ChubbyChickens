@@ -20,7 +20,7 @@ public class HillSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hillAngle = new Vector3(hillDegree, 0, 0);
+        hillAngle = new Vector3(hillDegree, -90, 0);
         hillOffset = new Vector3(0, hillDegree, zVariance);
         CreateLevel();
     }
@@ -45,7 +45,7 @@ public class HillSpawn : MonoBehaviour
                 SpawnSpawner();
                 Debug.Log(i + "is divisble by 5");
             }
-            if (i == levelLength - 1)
+            if (i == levelLength)
             {
                 CreateLastPiece();
             }
@@ -176,7 +176,7 @@ public class HillSpawn : MonoBehaviour
     private void SpawnSpawner()
     {
         GameObject nextSpawner = Instantiate(objectSpawner);
-        nextSpawner.transform.position = this.transform.position + new Vector3(0, 10, 22.5f);
+        nextSpawner.transform.position = this.transform.position + new Vector3(0, 12.5f, -22.5f);
         GameManager.Instance.spawns.Add(nextSpawner.GetComponent<ObjectSpawner>());
 
     }

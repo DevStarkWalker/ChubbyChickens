@@ -37,7 +37,6 @@ public class ObjectSpawner : MonoBehaviour
 
     private void SpawnObject()
     {
-        Debug.Log("Spawn");
         int randomObject = Random.Range(0, objects.Count);
         int randomPoint = Random.Range(0, spawnPoints.Count);
         GameObject obj = Instantiate(objects[randomObject], spawnPoints[randomPoint].transform.position, spawnPoints[randomPoint].transform.rotation);

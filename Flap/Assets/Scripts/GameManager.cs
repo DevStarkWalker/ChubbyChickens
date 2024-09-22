@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -11,8 +12,9 @@ public class GameManager : MonoBehaviour
     public Controller player;
     public HillSpawn hillSpawner; 
     public List<ObjectSpawner> spawns;
-    public TextMeshProUGUI countUI;
+    public TextMeshProUGUI countDownUI;
     public TextMeshProUGUI LevelUI;
+    public GameObject restartScreen;
     public bool _nextLevel = false;
     public int level = 1;
 
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         // Optional: Make this GameManager persistent across scenes
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         UpdateSpawners();
     }
     // Start is called before the first frame update
@@ -71,12 +73,12 @@ public class GameManager : MonoBehaviour
         if (countDownTimer)
         {
             player.canMove = false;
-            countUI.gameObject.SetActive(true);
+            countDownUI.gameObject.SetActive(true);
             countDown -= Time.deltaTime;
-            countUI.text = ((int)countDown).ToString();
+            countDownUI.text = ((int)countDown).ToString();
             if (countDown < 0)
             {
-                countUI.gameObject.SetActive(false);
+                countDownUI.gameObject.SetActive(false);
                 countDownTimer = false;
                 countDown = 4;
                 player.canMove = true;
@@ -128,8 +130,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         timingGame = false;
-        player.enabled = false;
+        player.canMove = false;
         player.animator.Play("Death");
+        restartScreen.SetActive(true);
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         Debug.Log("You Suck");
     }
 
@@ -153,5 +157,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    public void RestartGame()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }    
 }

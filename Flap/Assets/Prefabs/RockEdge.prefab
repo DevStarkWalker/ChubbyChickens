@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4811368266388105874}
+  - component: {fileID: 7234834534937801274}
   m_Layer: 0
   m_Name: RockEdge
   m_TagString: Untagged
@@ -37,6 +38,27 @@ Transform:
   - {fileID: 8893881251182132697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7234834534937801274
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247340058495319501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13.124456, y: 25.746105, z: 58.72274}
+  m_Center: {x: 15.89943, y: -12.373053, z: 9.15255}
 --- !u!1001 &255419160549823162
 PrefabInstance:
   m_ObjectHideFlags: 0
