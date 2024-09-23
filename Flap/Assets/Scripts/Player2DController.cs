@@ -11,6 +11,7 @@ public class Player2DController : MonoBehaviour
 
     // Components
     [SerializeField] private Rigidbody2D rb;
+    public Animator animator;
     [SerializeField] private bool isGrounded = false;
     [SerializeField] private bool isJumping = false;
     [SerializeField] private bool isGliding = false;
@@ -46,15 +47,20 @@ public class Player2DController : MonoBehaviour
         // Apply horizontal movement
         rb.velocity = new Vector2(moveInput * currentSpeed, rb.velocity.y);
 
+        // Handle animations
+        HandleAnimations(moveInput, currentSpeed);
+
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = true;
+            animator.SetTrigger("Jump");
+            animator.SetBool("Grounded", false);
         }
 
         // Glide (while holding Space in the air)
-        if (Input.GetKey(KeyCode.Space) && !isGrounded && !isGliding && rb.velocity.y < 0)
+        if (Input.GetKey(KeyCode.Space) && !isGrounded && !isGliding && rb.velocity.y <= 0)
         {
             StartGlide();
         }
@@ -62,18 +68,56 @@ public class Player2DController : MonoBehaviour
         {
             StopGlide();
         }
+        // If grounded, reset the jump and glide states
+        if (isGrounded)
+        {
+            isJumping = false;
+            animator.SetBool("Grounded", true);
+            animator.SetBool("IsGliding", false);  // End glide animation if grounded
+        }
+
+    }
+
+    private void HandleAnimations(float moveInput, float currentSpeed)
+    {
+        if (Mathf.Abs(moveInput) == 0)
+        {
+            animator.SetBool("NotMoving", true);
+        }
+
+        // Check for walking animation
+        if (Mathf.Abs(moveInput) > 0 && !Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            animator.SetBool("NotMoving", false);
+            animator.SetBool("IsWalking", true);
+            animator.SetBool("IsRunning", false);  // Not running
+        }
+        // Check for running animation
+        else if (Mathf.Abs(moveInput) > 0 && Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            animator.SetBool("IsWalking", false);  // Stop walking
+            animator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);  // Stop walking
+            animator.SetBool("IsRunning", false);  // Stop running
+        }
     }
 
     private void StartGlide()
-    {
+    {   
+        animator.SetBool("IsGliding", true);  // Trigger glide animation
         isGliding = true;
         rb.gravityScale = glideGravity;  // Reduce gravity for gliding effect
+        
     }
 
     private void StopGlide()
     {
         isGliding = false;
         rb.gravityScale = originalGravity;  // Restore original gravity scale
+        animator.SetBool("IsGliding", false);  // Trigger glide animation
     }
 
     // Optional: Visualize ground check in the editor
