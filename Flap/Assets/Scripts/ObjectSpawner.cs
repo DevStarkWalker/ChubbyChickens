@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    public Transform spawnPoint;
     public float spawnRate;
     public int spawnSpeed;
     public int tempScale;
     public List<GameObject> objects = new List<GameObject>();
-    public List<Transform> spawnPoints = new List<Transform>();
+
 
     private int speedScale;
     public Vector3 speedVector;
@@ -38,8 +39,7 @@ public class ObjectSpawner : MonoBehaviour
     private void SpawnObject()
     {
         int randomObject = Random.Range(0, objects.Count);
-        int randomPoint = Random.Range(0, spawnPoints.Count);
-        GameObject obj = Instantiate(objects[randomObject], spawnPoints[randomPoint].transform.position, spawnPoints[randomPoint].transform.rotation);
+        GameObject obj = Instantiate(objects[randomObject], spawnPoint.position, spawnPoint.rotation);
         spawnedObjects.Add(obj);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.AddForce(rb.transform.forward * tempScale);

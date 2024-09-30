@@ -9,7 +9,7 @@ public class HillSpawn : MonoBehaviour
     public int currentDifficulty = 1;
     public int levelLength = 5;
     public int hillDegree = 10;
-    public float zVariance = -55;
+    public float zVariance = 20;
     public Vector3 hillAngle;
     public Vector3 hillOffset;
     public List<GameObject> hillPieces;
@@ -20,8 +20,8 @@ public class HillSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hillAngle = new Vector3(hillDegree, -90, 0);
-        hillOffset = new Vector3(0, hillDegree, zVariance);
+        hillAngle = new Vector3(0, 0, hillDegree);
+        hillOffset = new Vector2(zVariance, zVariance/5);
         CreateLevel();
     }
 
@@ -158,10 +158,10 @@ public class HillSpawn : MonoBehaviour
     {
         Vector3 lastPiecePos = new Vector3();
         lastPiecePos = this.transform.position;
-        Vector3 endOffset = new Vector3(0, -(hillDegree / 2), 50);
+        Vector3 endOffset = new Vector2(zVariance + 2, zVariance / 10);
         GameObject endPiece = Instantiate(hillPieces[0]);
         endPiece.SetActive(false);
-        endPiece.transform.position = lastPiecePos - endOffset;
+        endPiece.transform.position = lastPiecePos + endOffset;
         endPiece.SetActive(true);
         this.transform.position = endPiece.transform.position;
         foreach (Transform child in endPiece.transform)
@@ -176,8 +176,7 @@ public class HillSpawn : MonoBehaviour
     private void SpawnSpawner()
     {
         GameObject nextSpawner = Instantiate(objectSpawner);
-        nextSpawner.transform.position = this.transform.position + new Vector3(0, 12.5f, -22.5f);
-        GameManager.Instance.spawns.Add(nextSpawner.GetComponent<ObjectSpawner>());
+        nextSpawner.transform.position = this.transform.position + new Vector3(20f, 2, 0);
 
     }
 
