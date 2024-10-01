@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class HillSpawn : MonoBehaviour
@@ -177,7 +178,7 @@ public class HillSpawn : MonoBehaviour
     {
         GameObject nextSpawner = Instantiate(objectSpawner);
         nextSpawner.transform.position = this.transform.position + new Vector3(20f, 2, 0);
-
+        nextSpawner.transform.Rotate(0,0,0);
     }
 
     #endregion

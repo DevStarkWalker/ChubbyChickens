@@ -21,14 +21,15 @@ public class ObjectSpawner : MonoBehaviour
     {
         SetLevelAdjustments();
         var rotation = this.transform.rotation;
-        tempScale *= spawnSpeed; 
+        tempScale *= spawnSpeed;
+        StartLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > spawnRate)
+        if (timer > 1)
         {
             timer = 0;
             SpawnObject();
@@ -39,10 +40,10 @@ public class ObjectSpawner : MonoBehaviour
     private void SpawnObject()
     {
         int randomObject = Random.Range(0, objects.Count);
-        GameObject obj = Instantiate(objects[randomObject], spawnPoint.position, spawnPoint.rotation);
+        GameObject obj = Instantiate(objects[randomObject], spawnPoint.position, this.transform.rotation, this.transform);
         spawnedObjects.Add(obj);
-        Rigidbody rb = obj.GetComponent<Rigidbody>();
-        rb.AddForce(rb.transform.forward * tempScale);
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        rb.AddForce(rb.transform.right * -tempScale);
     }
 
     public void SetLevelAdjustments()
@@ -53,6 +54,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public void StartLevel()
     {
+        Debug.Log("start level");
         this.enabled = true;
     }
 
