@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public Controller player;
+    public BirdController player;
     public HillSpawn hillSpawner; 
     public List<ObjectSpawner> spawns;
     public TextMeshProUGUI countDownUI;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         if(timingGame) { gameTime += Time.deltaTime; }
         if (countDownTimer)
         {
-            player.canMove = false;
+            //player.canMove = false;
             countDownUI.gameObject.SetActive(true);
             countDown -= Time.deltaTime;
             countDownUI.text = ((int)countDown).ToString();
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
                 countDownUI.gameObject.SetActive(false);
                 countDownTimer = false;
                 countDown = 4;
-                player.canMove = true;
+                //player.canMove = true;
                 foreach (var t in spawns)
                 {
                     t.enabled = true;
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         timingGame = false;
-        player.canMove = false;
+        //player.canMove = false;
         player.animator.Play("Death");
         restartScreen.SetActive(true);
         UnityEngine.Cursor.lockState = CursorLockMode.None;
