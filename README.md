@@ -34,15 +34,8 @@ Upcoming Features:
 🐞 Bug Reporting
 Have an issue? Spot a bug? Submit it in the Issues tab! Use the provided templates for clear communication and ensure smooth fixes.
 
-🎨 Credits
-Game Design & Development: [Your Name]
-Art & Assets: (Contributors here)
-Special Thanks: (Anyone who helped out!)
-🐤 Stay Updated
-Follow the game's progress and updates on:
-
-Twitter
-Discord
-
+🐤 Credits
+Studio: Novaeh Studios
+Game Design & Development: [Devon Walker]
 
 Happy Chicken-ing! 🐔💨
