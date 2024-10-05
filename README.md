@@ -18,23 +18,24 @@
 - **Breaks Between Chaos**: After each stretch, catch your breath in short breaks before jumping back into the fray.
 
 ### 🎮 Controls
-Move: WASD or Arrow Keys
-Jump: Spacebar
-Glide: Hold Spacebar while in the air
-Sprint: Shift
-🗂️ Roadmap
+- Move: WASD or Arrow Keys
+- Jump: Spacebar
+- Glide: Hold Spacebar while in the air
+- Sprint: Shift
+
+### 🗂️ Roadmap
 Check the Issues tab for ongoing development tasks and features being worked on.
 
-Upcoming Features:
+### Upcoming Features:
 🎉 Power-ups to give players an edge (or troll their friends!)
 🐔 Character Customization: Make your chicken unique!
 🗺️ Map Variations: New environments with fresh challenges.
 🚀 Online Matchmaking: Smooth player connections and lobby system.
 
-🐞 Bug Reporting
+### 🐞 Bug Reporting
 Have an issue? Spot a bug? Submit it in the Issues tab! Use the provided templates for clear communication and ensure smooth fixes.
 
-🐤 Credits
+### 🐤 Credits
 Studio: Novaeh Studios
 Game Design & Development: [Devon Walker]
 
