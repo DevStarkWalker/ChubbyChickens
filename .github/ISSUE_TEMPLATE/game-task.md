@@ -12,24 +12,25 @@ Provide a clear and concise description of the task, feature, or bug that needs 
 
 ### 📝 Details:
 
-- **Type**: (Choose one)  
-  - Feature / Game Mechanic  
-  - Bug  
-  - Enhancement  
-  - Refactoring / Optimization  
-  - Art / Design  
-  - Multiplayer / Networking
+#### **Type**: (Choose one)  
 
-- **Priority**:  
-  - Low  
-  - Medium  
-  - High
+- [ ]   - Feature / Game Mechanic  
+- [ ]   - Bug  
+- [ ]   - Enhancement  
+- [ ]   - Refactoring / Optimization  
+- [ ]   - Art / Design  
+- [ ]   - Multiplayer / Networking
 
-### 🛠️ Requirements/To-Dos:
+#### **Priority**:  
+- [ ]   - Low  
+- [ ]   - Medium  
+- [ ]   - High
 
+#### 🛠️ Requirements/To-Dos:
 - [ ] List out specific tasks to complete this issue.
 - [ ] Clearly define sub-tasks (code, assets, testing, etc).
 - [ ] Mention any dependencies or blockers, if applicable.
+
 
 ### 🎮 How it works:
 
