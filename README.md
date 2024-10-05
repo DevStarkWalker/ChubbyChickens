@@ -16,20 +16,12 @@
 - **Progressive Difficulty**: Each level gets harder, pushing players to their limits.
 - **Multiplayer Madness**: Play with friends online in a race to the final level. Who will survive the longest?
 - **Breaks Between Chaos**: After each stretch, catch your breath in short breaks before jumping back into the fray.
-  
-## 🚀 Getting Started
-
-### Prerequisites:
-To run or contribute to this project, you'll need:
-- **Unity Editor** (recommended version: 2023.x.x)
-- **Netcode for GameObjects** package for multiplayer functionality
-- **Git** for version control
 
 ### 🎮 Controls
 Move: WASD or Arrow Keys
 Jump: Spacebar
-Dodge: (Keybind for dodging if applicable)
-Interact: (Keybind for any special interactions)
+Glide: Hold Spacebar while in the air
+Sprint: Shift
 🗂️ Roadmap
 Check the Issues tab for ongoing development tasks and features being worked on.
 
