@@ -6,7 +6,7 @@
 
 - **Title**: Chubby Chickens
 - **Genre**: Online Multiplayer Party Game
-- **Platform**: PC (and potential others)
+- **Platform**: PC
 - **Development Tools**: Unity, C#, Netcode for GameObjects (multiplayer framework)
 - **Status**: Early development (prototype phase)
 
