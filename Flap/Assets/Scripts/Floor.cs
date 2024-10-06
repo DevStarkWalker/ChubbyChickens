@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.OutOfBounds(collision.gameObject);
+            GameManager.Instance.GameOver();
+        }
 
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.OutOfBounds(other.gameObject);
         }
     }
+
+
 }

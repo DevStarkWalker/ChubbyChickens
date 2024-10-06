@@ -8,22 +8,16 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    public LevelBuilder LevelBuilder;
     public BirdController player;
     public TextMeshProUGUI countDownUI;
     public TextMeshProUGUI LevelUI;
     public GameObject restartScreen;
     public bool _nextLevel = false;
     public int level = 1;
+    public GameObject lastTouchedPiece;
+    public int playerCount = 1;
 
-    public int difficulty = 1;
-    public int length = 5;
-    public int degree = 10;
-    public float spawnRate = 1;
-    public int spawnSpeed = 5;
-
-    private int levelTicker = 0;
-    private int difficultyTicker = 1;
     private float countDown = 4;
     private bool countDownTimer = false;
     private bool timingGame = false;
@@ -43,9 +37,6 @@ public class GameManager : MonoBehaviour
         // Set this instance as the active instance
         Instance = this;
 
-        // Optional: Make this GameManager persistent across scenes
-        //DontDestroyOnLoad(gameObject);
-        UpdateSpawners();
     }
     // Start is called before the first frame update
     void Start()
@@ -60,12 +51,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Application.isFocused)
+        {
+            UnityEngine.Cursor.visible = true;
+        }
     }
 
     public void FinishedLevel()
     {
-
+        Debug.Log("FinishedLevel");
+        LevelBuilder.BuildLevel();
     }
 
 
@@ -78,31 +73,16 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         timingGame = false;
-        //player.canMove = false;
-        player.animator.Play("Death");
+        player.Died();
+        player.animator.SetBool("IsDead",true);
         restartScreen.SetActive(true);
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         Debug.Log("You Suck");
     }
 
-    private void UpdateSpawners()
+    public void RespawnPlayer()
     {
-
-    }
-
-    private void AdjustLevels()
-    {
-        switch (levelTicker) 
-        {
-            case 1:
-                length += 5; break;
-            case 2:
-                degree += 5; break;
-            case 3:
-                spawnRate-= .1f;
-                spawnSpeed ++;
-                break;
-        }
+        
     }
 
     public void RestartGame()

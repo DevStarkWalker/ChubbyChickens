@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class BirdController : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class BirdController : MonoBehaviour
     [Header("Booleans")]
     public bool isGrounded;
     public bool isGliding = false;
+    public bool isDead = false;
 
     private float currentSpeed;
     private Vector3 velocity;
@@ -31,33 +31,43 @@ public class BirdController : MonoBehaviour
     private float jumpPause = 1f;
     private bool jumpBool = false;
 
+
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
+
     void Update()
     {
-
-        // Get input for movement
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-        // Adjust movement speed based on shift and grounded status
-        HandleMovementSpeed(direction);
-
-        // Move the player if there is input
-        HandleMovement(direction);
-
-        // Handle Jump and Glide inputs
-        HandleJumpAndGlide();
-
-        if (jumpBool)
+        if(!isDead)
         {
-            jumpTimer += Time.deltaTime;
+            // Get input for movement
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+            // Adjust movement speed based on shift and grounded status
+            HandleMovementSpeed(direction);
+
+            // Move the player if there is input
+            HandleMovement(direction);
+
+            // Handle Jump and Glide inputs
+            HandleJumpAndGlide();
+
+            if (jumpBool)
+            {
+                jumpTimer += Time.deltaTime;
+            }
+
+            // Apply vertical movement (gravity and jump velocity)
+            controller.Move(velocity * Time.deltaTime);
+
+            // Update animations based on movement state
+            UpdateAnimations(direction);
+
         }
-
-        // Apply vertical movement (gravity and jump velocity)
-        controller.Move(velocity * Time.deltaTime);
-
-        // Update animations based on movement state
-        UpdateAnimations(direction);
+        
     }
 
     private void LateUpdate()
@@ -161,5 +171,14 @@ public class BirdController : MonoBehaviour
         animator.SetBool("isWalking", isMoving && !isRunning && isGrounded); // Walking if moving but not running
         animator.SetBool("isRunning", isRunning && isGrounded);               // Running if holding shift and moving
         animator.SetBool("NotMoving", !isMoving);               // Not moving if not pressing movement keys
+    }
+
+    public void Died() 
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        isDead = true;
+        controller.enabled = false;
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+        Cursor.visible = true;
     }
 }
